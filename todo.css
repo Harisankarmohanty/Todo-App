@@ -1,0 +1,206 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0f172a;
+    --card: #1f2a44;
+    --text: #e3e8ff;
+    --muted: #8fa3bf;
+    --accent: #6366f1;
+    --radius: 1rem;
+    --shadow: 0 25px 50px -12px rgba(100, 100, 255, 0.25);
+    --transition: 0.35s cubic-bezier(.4, .2, .2, 1);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Body & container */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1f2a44 65%);
+    color: var(--text);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Title */
+h1 {
+    font-size: 2.2rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-top: 8px;
+}
+
+/* Input row */
+input[type="text"],
+button {
+    border: none;
+    outline: none;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.input-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Text input */
+input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    backdrop-filter: blur(8px);
+    position: relative;
+    padding-left: 1rem;
+}
+
+input::placeholder {
+    color: var(--muted);
+}
+
+/* Add button */
+button {
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+button:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Todo list card */
+ul {
+    list-style: none;
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem 1rem 1.25rem;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+/* Individual todo */
+li {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    font-size: 1rem;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.25);
+}
+
+/* Delete button */
+button.delete {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--text);
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+button.delete:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+button.delete:active {
+    transform: scale(0.95);
+}
+
+/* Empty state */
+ul:empty::before {
+    content: "No todos yet. Add something!";
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    font-style: italic;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    .input-wrapper {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Floating subtle particle accent */
+body::after {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.15), transparent 60%);
+    pointer-events: none;
+    filter: blur(80px);
+    z-index: -1;
+}
